@@ -15,8 +15,3 @@ root.render(
     <ToastContainer />
   </Provider>
 );
-
-toast({
-  description: 'está funcionando',
-  duration: 2000
-})
