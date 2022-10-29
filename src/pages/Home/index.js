@@ -7,23 +7,17 @@ import Button from 'components/Button';
 import { useCallback, useEffect } from 'react';
 import instance from 'common/config/api';
 import { adicionarCategorias, buscarCategorias } from 'store/reducers/categorias';
-import { adicionarItens } from 'store/reducers/itens';
+import { adicionarItens, buscarItens } from 'store/reducers/itens';
 
 export default function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const categorias = useSelector(state => state.categorias);
 
-  const buscarItens = useCallback(async () => {
-    const resposta = await instance.get('/itens');
-
-    dispatch(adicionarItens(resposta.data));
-  }, [dispatch]);
-
   useEffect(() => {
     dispatch(buscarCategorias());
-    buscarItens();
-  }, [dispatch, buscarItens]);
+    dispatch(buscarItens());
+  }, [dispatch]);
 
   return (
     <div>
