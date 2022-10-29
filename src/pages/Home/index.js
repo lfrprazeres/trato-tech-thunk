@@ -6,19 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from 'components/Button';
 import { useCallback, useEffect } from 'react';
 import instance from 'common/config/api';
-import { adicionarCategorias } from 'store/reducers/categorias';
+import { adicionarCategorias, buscarCategorias } from 'store/reducers/categorias';
 import { adicionarItens } from 'store/reducers/itens';
 
 export default function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const categorias = useSelector(state => state.categorias);
-
-  const buscarCategorias = useCallback(async () => {
-    const resposta = await instance.get('/categorias');
-
-    dispatch(adicionarCategorias(resposta.data));
-  }, [dispatch]);
 
   const buscarItens = useCallback(async () => {
     const resposta = await instance.get('/itens');
@@ -27,9 +21,9 @@ export default function Home() {
   }, [dispatch]);
 
   useEffect(() => {
-    buscarCategorias();
+    dispatch(buscarCategorias());
     buscarItens();
-  }, [buscarCategorias, buscarItens]);
+  }, [dispatch, buscarItens]);
 
   return (
     <div>
