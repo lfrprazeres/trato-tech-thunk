@@ -4,10 +4,9 @@ import relogio from 'assets/inicial.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from 'components/Button';
-import { useCallback, useEffect } from 'react';
-import instance from 'common/config/api';
-import { adicionarCategorias, buscarCategorias } from 'store/reducers/categorias';
-import { adicionarItens, buscarItens } from 'store/reducers/itens';
+import { useEffect } from 'react';
+import { buscarCategorias } from 'store/reducers/categorias';
+import { buscarItens } from 'store/reducers/itens';
 
 export default function Home() {
   const dispatch = useDispatch();
